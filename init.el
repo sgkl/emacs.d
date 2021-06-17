@@ -15,7 +15,7 @@
 
 ;; Bootstrap config
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
+(require 'init-utils)
 
 (require 'init-elpa)
 
@@ -24,11 +24,14 @@
 
 
 ;(require 'init-themes)
-
+(require 'init-flycheck)
 (require 'init-company)
 
 
 (require 'init-rust)
+(require 'init-toml)
+(require 'init-yaml)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
