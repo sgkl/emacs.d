@@ -23,7 +23,7 @@
 (require-package 'diminish)
 
 
-;(require 'init-themes)
+(require 'init-themes)
 (require 'init-flycheck)
 (require 'init-company)
 
