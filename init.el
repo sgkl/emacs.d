@@ -27,10 +27,17 @@
 (require 'init-flycheck)
 (require 'init-company)
 
+(require 'init-editing-utils)
 
 (require 'init-rust)
 (require 'init-toml)
 (require 'init-yaml)
+
+(require 'init-go)
+
+(require 'init-org)
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
