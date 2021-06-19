@@ -38,6 +38,8 @@
 (require 'init-org)
 
 
+(require 'init-folding)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
