@@ -66,8 +66,30 @@
     (when (fboundp 'writeroom-mode)
       (writeroom-mode 0))))
 
+
 (setq org-support-shift-select t)
 
+;;; Capturing
+(global-set-key (kbd "C-c c") 'org-capture)
+
+(setq org-capture-templates
+      `(("t" "todo" entry (file "")  ; "" => `org-default-notes-file'
+         "* NEXT %?\n%U\n" :clock-resume t)
+        ("n" "note" entry (file "")
+         "* %? :NOTE:\n%U\n%a\n" :clock-resume t)
+        ))
+
+;;; Refiling
+
+(setq org-refile-use-cache nil)
+
+;; Targets include this file and any file contributing to the agenda - up to 5 levels deep
+(setq org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5)))
+
+(with-eval-after-load 'org-agenda
+  (add-to-list 'org-agenda-after-show-hook 'org-show-entry))
+
+(advice-add 'org-refile :after (lambda (&rest _) (org-save-all-org-buffers)))
 
 
 (provide 'init-org)
