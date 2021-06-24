@@ -93,6 +93,41 @@
 (when (require-package 'rainbow-delimiters)
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+(when (maybe-require-package 'symbol-overlay)
+  (dolist (hook '(prog-mode-hook  html-mode-hook yaml-mode-hook conf-mode-hook))
+    (add-hook hook 'symbol-overlay-mode))
+  (with-eval-after-load 'symbol-overlay
+    (diminish 'symbol-overlay-mode)
+    (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
+    (define-key symbol-overlay-mode-map (kbd "M-I") 'symbol-overlay-remove-all)
+    (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
+    (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev)))
+
+
+;;; Zap *up* to char is a handy pair for zap-to-char
+(global-set-key (kbd "M-Z") 'zap-up-to-char)
+
+(require-package 'browse-kill-ring)
+(setq browse-kill-ring-separator "\f")
+(global-set-key (kbd "M-Y") 'browse-kill-ring)
+(with-eval-after-load 'browse-kill-ring
+  (define-key browse-kill-ring-mode-map (kbd "C-g") 'browse-kill-ring-quit)
+  (define-key browse-kill-ring-mode-map (kbd "M-n") 'browse-kill-ring-forward)
+  (define-key browse-kill-ring-mode-map (kbd "M-p") 'browse-kill-ring-previous))
+(with-eval-after-load 'page-break-lines
+  (add-to-list 'page-break-lines-modes 'browse-kill-ring-mode))
+
+;; Don't disable narrowing commands
+(put 'narrow-to-region 'disabled nil)
+(put 'narrow-to-page 'disabled nil)
+(put 'narrow-to-defun 'disabled nil)
+;; Don't disable case-change functions
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
+;; Show matching parens
+(add-hook 'after-init-hook 'show-paren-mode)
+
 
 
 (provide 'init-editing-utils)

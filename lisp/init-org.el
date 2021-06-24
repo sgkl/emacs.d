@@ -91,6 +91,8 @@
 
 (advice-add 'org-refile :after (lambda (&rest _) (org-save-all-org-buffers)))
 
+;; Exclude DONE state tasks from refile targets
+
 
 (provide 'init-org)
 ;;; init-org.el ends here
