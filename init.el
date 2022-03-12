@@ -1,3 +1,4 @@
+;;;
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
@@ -24,6 +25,8 @@
 
 
 (require 'init-themes)
+(require 'init-ui)
+
 (require 'init-flycheck)
 (require 'init-company)
 
@@ -32,6 +35,8 @@
 (require 'init-rust)
 (require 'init-toml)
 (require 'init-yaml)
+
+(require 'init-ggtags)
 
 (require 'init-go)
 
